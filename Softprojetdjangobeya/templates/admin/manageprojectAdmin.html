@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 30px;
+        color: #333;
+      }
+      .card-body {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+      .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-left: 5px;
+      }
+      .btn-danger:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>GESTION DES PROJETS</h1>
+    <div class="card-body">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Matière</th>
+            <th>Statut</th>
+            <th>Date de Téléchargement</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for project in projects %}
+          <tr>
+            <td>{{ project.title }}</td>
+            <td>{{ project.subject }}</td>
+            <td>{{ project.status }}</td>
+            <td>{{ project.upload_date }}</td>
+            <td>
+              <a
+                href="{% url 'edit_project' project.id %}"
+                class="btn btn-primary"
+                >Modifier</a
+              >
+              <a
+                href="{% url 'delete_project' project.id %}"
+                class="btn btn-danger"
+                >Supprimer</a
+              >
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+      <br /><br />
+      <a class="btn btn-primary" href="{% url 'admin' %}">RETOUR</a>
+    </div>
+  </body>
+</html>
